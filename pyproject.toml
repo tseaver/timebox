@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "timebox"
+version = "0.1dev0"
+description = "Simulated timeseries generator."
+authors = [{ name = "Enfold", email = "info@enfoldsystems.net" }]
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "fastapi",
+    "greenlet",
+    "starlette",
+    "trio",
+    "uvicorn[standard]",
+]
+
+[project.scripts]
+timebox-cli = "timebox.cli:the_cli"
+
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "pytest-asyncio",
+    "coverage",
+    "anyio",
+    "trio",
+    "ruff",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+python_files = "test_*.py"
+# skip 'tests/functional' by default
+testpaths = ["tests/unit"]
+addopts = "--cov=timebox --cov=tests/unit --cov-branch --cov-fail-under=100"
+filterwarnings = [
+    # "ignore::DeprecationWarning:<source-package>",
+]
+markers = [
+]
+
+[tool.coverage.run]
+omit = [
+    "src/timebox/cli.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.ruff]
+line-length = 79
+exclude = [
+]
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    # flake8
+    "F",
+    # pycodestyle
+    "E",
+    # flake8-bugbear
+    "B",
+    # pyupgrade
+    "U",
+    # isort
+    "I",
+    # pandas vet
+    "PD",
+    # tryceratops
+    "TRY",
+    # flake8-pytest-style
+    "PT",
+]
+ignore = [
+]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff.lint.flake8-pytest-style]
+parametrize-names-type = "csv"

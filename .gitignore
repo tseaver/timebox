@@ -1,0 +1,16 @@
+.env
+venv/
+pyvenv.cfg
+
+#Python
+*.pyc
+.coverage
+*.egg-info
+__pycache__/
+
+# misc
+tmp/
+
+# osx
+.DS_Store
+._*
