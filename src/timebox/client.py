@@ -21,6 +21,27 @@ TIMEBOX_QUERY = {
                 "arguments": {"mu": 0.0, "sigma": 10.0},
             },
         },
+        {
+            "name": "qux",
+            "distribution": {
+                "kind": "triangular",
+                "arguments": {"low": -5.0, "high": 35.0, "mode": 20.0},
+            },
+        },
+        {
+            "name": "spam",
+            "distribution": {
+                "kind": "paretovariate",
+                "arguments": {"alpha": 1.5},
+            },
+        },
+        {
+            "name": "baz",
+            "distribution": {
+                "kind": "weibullvariate",
+                "arguments": {"alpha": 1.5, "beta": 2.0},
+            },
+        },
     ],
 }
 WINDOW_SIZE = 10

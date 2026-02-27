@@ -67,7 +67,66 @@ class NormVariateDistribution(_BaseDistribution):
         }
 
 
-Distributions = LogNormVariateDistribution | NormVariateDistribution
+class ParetoVariateDistribution(_BaseDistribution):
+    __doc__ = random.paretovariate.__doc__
+    kind: typing.ClassVar[str] = "paretovariate"
+    alpha: float
+
+    @classmethod
+    def describe(cls) -> DistributionInfo:
+        base = super().describe()
+        return base | {
+            "arguments": base["arguments"]
+            | {
+                "alpha": "float",
+            }
+        }
+
+
+class TriangularDistribution(_BaseDistribution):
+    __doc__ = random.triangular.__doc__
+    kind: typing.ClassVar[str] = "triangular"
+    low: float
+    high: float
+    mode: float | None = None
+
+    @classmethod
+    def describe(cls) -> DistributionInfo:
+        base = super().describe()
+        return base | {
+            "arguments": base["arguments"]
+            | {
+                "low": "float",
+                "high": "float",
+                "mode": "float | None, default None",
+            }
+        }
+
+
+class WeibullVariateDistribution(_BaseDistribution):
+    __doc__ = random.weibullvariate.__doc__
+    kind: typing.ClassVar[str] = "weibullvariate"
+    alpha: float
+
+    @classmethod
+    def describe(cls) -> DistributionInfo:
+        base = super().describe()
+        return base | {
+            "arguments": base["arguments"]
+            | {
+                "alpha": "float",
+                "beta": "float",
+            }
+        }
+
+
+Distributions = (
+    LogNormVariateDistribution
+    | NormVariateDistribution
+    | TriangularDistribution
+    | ParetoVariateDistribution
+    | WeibullVariateDistribution
+)
 
 
 class DistributionQuery(pydantic.BaseModel):
