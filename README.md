@@ -62,3 +62,39 @@ SSE response records:
 ```
 {"timestamp": "2026-02-26T23:45:01Z", "foo": 12.345, "bar": 6.789, ....}
 ```
+
+## `timebox.server`
+
+```bash
+$ uvicorn --port 8899 "timebox.server:app"
+INFO:     Uvicorn running on http://127.0.0.1:8899 (Press CTRL+C to quit)
+INFO:     Started reloader process [1255767] using WatchFiles
+INFO:     Started server process [1255769]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+```
+
+## `timebox.client`
+
+```bash
+$ python -m timebox.client
+Filling window: [1/10]
+Filling window: [2/10]
+Filling window: [3/10]
+Filling window: [4/10]
+Filling window: [5/10]
+Filling window: [6/10]
+Filling window: [7/10]
+Filling window: [8/10]
+Filling window: [9/10]
+Filling window: [10/10]
+
+2026-02-27 02:22:16+00:00: column: foo > 1.5 *sigma
+2026-02-27 02:22:16+00:00: column: bar > 1.5 *sigma
+
+2026-02-27 02:22:17+00:00: column: bar > 1.5 *sigma
+
+
+2026-02-27 02:22:19+00:00: column: foo > 1.5 *sigma
+^CTraceback (most recent call last):
+```

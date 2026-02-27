@@ -16,6 +16,8 @@ classifiers = [
 dependencies = [
     "fastapi",
     "greenlet",
+    "pandas",
+    "requests",
     "starlette",
     "trio",
     "uvicorn[standard]",
